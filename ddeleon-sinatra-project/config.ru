@@ -4,6 +4,6 @@ raise 'Migrations are pending. Run `rake db:migrate` to resolve the issue.'
 end
 use Rack::MethodOverride
 # use OtherController1
-# use OtherController2
-# use UsersController
+use ProductsController
+use UsersController
 run ApplicationController
