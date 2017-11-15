@@ -18,3 +18,8 @@ gem 'bcrypt'
 gem "tux"
 gem 'rack-flash3'
 gem 'sinatra-flash'
+
+group :test do
+  gem 'rspec'
+  gem 'capybara'
+end
