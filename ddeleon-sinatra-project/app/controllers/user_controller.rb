@@ -7,17 +7,18 @@ class UserController < ApplicationController
     if !logged_in?(session)
       erb :'/users/signup'
     else
-      erb :'/users/main'
+      redirect to '/users/main'
     end
   end
 
   post '/signup' do
+    #would like to be able to do this with just params
     user = User.new(:username => params[:username], :password => params[:password])
     if params[:username] != "" && params[:email] != "" && params[:password] != ""
       user.save
       session[:id] = user.id
       # binding.pry
-      erb :'/users/main'
+      redirect to '/users/main'
     # binding.pry
     else
       redirect to '/signup'
@@ -30,22 +31,39 @@ class UserController < ApplicationController
 
   get '/login' do
     #if user not logged in, show login form
-    erb :'users/login'
+    if !logged_in?(session)
+      erb :'users/login'
+    else
+      redirect to '/users/main'
     #otherwise redirect to their main page, whatever that is
   end
 
   post '/login' do
     #find user
+    user = User.find_by(username: params[:username])
+    if user && user.authenticate(params[:password])
+      session[:id] = user.id
+      redirect to 'users/main'
+    else
+      redirect to '/signup'
+      #will probably need to adapt... ?? what if exist but password bad??
+    end
+
     #if user exists and pasword matches, set session id and redirect to main page
     #otherwise redirect back to signup
   end
 
   ############ SHOW USER ############
+  #not sure what to do with this routines
+  get '/users/main' do
+    erb :'/users/main'
+  end
 
-  # get '/users/:slug' do
-  #   #find user by slug
-  #   erb :'/users/show'
-  # end
+
+  get '/users/:slug' do
+    #find user by slug
+    erb :'/users/show'
+  end
 
   ############ LOGOUT ############
 
