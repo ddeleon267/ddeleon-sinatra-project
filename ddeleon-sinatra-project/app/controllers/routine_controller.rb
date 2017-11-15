@@ -1,3 +1,3 @@
-class RoutinesController < ApplicationController
+class RoutineController < ApplicationController
 
 end

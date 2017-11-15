@@ -1,4 +1,4 @@
-class UsersController < ApplicationController
+class UserController < ApplicationController
 ########### SIGNUP #############
 
   get '/signup' do

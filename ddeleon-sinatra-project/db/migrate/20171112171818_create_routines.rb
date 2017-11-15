@@ -6,4 +6,5 @@ class CreateRoutines < ActiveRecord::Migration[5.1]
       t.text :description
       t.integer :user_id
     end
+  end
 end
