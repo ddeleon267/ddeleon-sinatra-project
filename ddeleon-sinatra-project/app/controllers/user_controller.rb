@@ -8,6 +8,15 @@ class UserController < ApplicationController
   end
 
   post '/signup' do
+    user = User.new(:username => params[:username], :password => params[:password])
+    if params[:username] != "" && params[:email] != "" && params[:password] != ""
+      user.save
+      session[:id] = user.id
+      erb :'/users/index'
+    # binding.pry
+    else
+      redirect to '/signup'
+    end
     #instantiate new user
     #if neither user nor emal nor pw are empty, save
     #set session id
