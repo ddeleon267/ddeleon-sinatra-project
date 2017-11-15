@@ -17,11 +17,7 @@ class UserController < ApplicationController
     else
       redirect to '/signup'
     end
-    #instantiate new user
-    #if neither user nor emal nor pw are empty, save
-    #set session id
     #redirect somewhere.... like page that lists all routines??
-
     #otherwise...redirect to signup page or do flash message
   end
 
