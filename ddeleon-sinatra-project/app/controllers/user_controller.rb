@@ -7,5 +7,40 @@ class UserController < ApplicationController
     erb :'/users/signup'
   end
 
+  post '/signup' do
+    #instantiate new user
+    #if neither user nor emal nor pw are empty, save
+    #set session id
+    #redirect somewhere.... like page that lists all routines??
 
+    #otherwise...redirect to signup page or do flash message
+  end
+
+  ############ LOGIN ############
+
+  get '/login' do
+    #if user not logged in, show login form
+    erb :'users/login'
+    #otherwise redirect to their main page, whatever that is
+  end
+
+  post '/login' do
+    #find user
+    #if user exists and pasword matches, set session id and redirect to main page
+    #otherwise redirect back to signup
+  end
+
+  ############ SHOW USER ############
+
+  get '/users/:slug' do
+    #find user by slug
+    erb :'/users/show'
+  end
+
+  ############ LOGOUT ############
+
+  get '/logout' do
+    #if logged in, clear session, redirect to login
+    #otherwise, redirect to main index page. could change these redirects as well
+  end
 end
