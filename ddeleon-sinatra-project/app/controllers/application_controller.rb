@@ -9,6 +9,12 @@ class ApplicationController < Sinatra::Base
     set :session_secret, "password_security"
   end
 
+  helpers do
+    def logged_in?(session)
+      !!session[:id]
+    end
+  end
+
   get '/' do
     # binding.pry
     "Hello, World!"

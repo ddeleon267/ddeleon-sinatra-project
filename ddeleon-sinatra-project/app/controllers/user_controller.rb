@@ -12,6 +12,7 @@ class UserController < ApplicationController
     if params[:username] != "" && params[:email] != "" && params[:password] != ""
       user.save
       session[:id] = user.id
+      binding.pry
       erb :'/users/index'
     # binding.pry
     else
