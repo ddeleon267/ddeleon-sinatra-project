@@ -48,7 +48,6 @@ class UserController < ApplicationController
       redirect to '/signup'
       #will probably need to adapt... ?? what if exist but password bad??
     end
-
     #if user exists and pasword matches, set session id and redirect to main page
     #otherwise redirect back to signup
   end
@@ -56,7 +55,12 @@ class UserController < ApplicationController
   ############ SHOW USER ############
   #not sure what to do with this routines
   get '/users/main' do
-    erb :'/users/main'
+    if logged_in?(session)
+      erb :'/users/main'
+      #will need to add something to make sure current user is right
+    else
+      redirect to '/login'
+    end
   end
 
 
