@@ -13,7 +13,7 @@ class UserController < ApplicationController
 
   post '/signup' do
     #would like to be able to do this with just params
-    user = User.new(:username => params[:username], :password => params[:password])
+    user = User.new(username: params[:username], email: params[:email], password: params[:password])
     if params[:username] != "" && params[:email] != "" && params[:password] != ""
       user.save
       session[:id] = user.id
@@ -36,6 +36,7 @@ class UserController < ApplicationController
     else
       redirect to '/users/main'
     #otherwise redirect to their main page, whatever that is
+    end
   end
 
   post '/login' do
@@ -56,6 +57,7 @@ class UserController < ApplicationController
   #not sure what to do with this routines
   get '/users/main' do
     if logged_in?(session)
+      binding.pry
       erb :'/users/main'
       #will need to add something to make sure current user is right
     else
@@ -74,5 +76,11 @@ class UserController < ApplicationController
   get '/logout' do
     #if logged in, clear session, redirect to login
     #otherwise, redirect to main index page. could change these redirects as well
+    if logged_in?(session)
+      session.clear
+      redirect to '/login'
+    else
+      redirect to '/'
+    end
   end
 end
