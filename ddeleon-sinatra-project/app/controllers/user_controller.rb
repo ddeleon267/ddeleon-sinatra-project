@@ -7,7 +7,7 @@ class UserController < ApplicationController
     if !logged_in?(session)
       erb :'/users/signup'
     else
-      redirect to '/users/main'
+      redirect to "/users/#{@user.slug}/main"
     end
   end
 
@@ -18,7 +18,7 @@ class UserController < ApplicationController
       user.save
       session[:id] = user.id
       # binding.pry
-      redirect to '/users/main'
+      redirect to "/users/#{@user.slug}/main"
     # binding.pry
     else
       redirect to '/signup'
@@ -34,7 +34,7 @@ class UserController < ApplicationController
     if !logged_in?(session)
       erb :'users/login'
     else
-      redirect to '/users/main'
+      redirect to "/users/#{@user.slug}/main"
     #otherwise redirect to their main page, whatever that is
     end
   end
@@ -44,8 +44,8 @@ class UserController < ApplicationController
     @user = User.find_by(username: params[:username])
     if @user && @user.authenticate(params[:password])
       session[:id] = @user.id
-    
-      redirect to 'users/main'
+
+      redirect to "/users/#{@user.slug}/main"
     else
       redirect to '/signup'
       #will probably need to adapt... ?? what if exist but password bad??
@@ -56,9 +56,12 @@ class UserController < ApplicationController
 
   ############ SHOW USER ############
   #not sure what to do with this routines
-  get '/users/main' do
-    if logged_in?(session)
+  #this is not working right
+  #UGHHHHHHHHH
+  get '/users/:slug/main' do
+    @user = User.find_by_slug(params[:slug])
 
+    if logged_in?(session)
       erb :'/users/main'
       #will need to add something to make sure current user is right
     else
@@ -69,6 +72,7 @@ class UserController < ApplicationController
 
   get '/users/:slug' do
     #find user by slug
+    @user = User.find_by_slug(params[:slug])
     erb :'/users/show'
   end
 
