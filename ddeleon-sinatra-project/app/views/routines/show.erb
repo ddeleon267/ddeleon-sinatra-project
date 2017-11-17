@@ -1,0 +1,8 @@
+<h2>Routine: <%=@routine.name%></h2>
+
+<h3>Products Used</h3>
+<%@routine.products.each do |product| %>
+  <li><%=product.name%></li>
+<%end%>
+
+<h3>Description: <%=@routine.description%></h3>
