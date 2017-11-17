@@ -41,9 +41,10 @@ class UserController < ApplicationController
 
   post '/login' do
     #find user
-    user = User.find_by(username: params[:username])
-    if user && user.authenticate(params[:password])
-      session[:id] = user.id
+    @user = User.find_by(username: params[:username])
+    if @user && @user.authenticate(params[:password])
+      session[:id] = @user.id
+    
       redirect to 'users/main'
     else
       redirect to '/signup'
@@ -57,7 +58,7 @@ class UserController < ApplicationController
   #not sure what to do with this routines
   get '/users/main' do
     if logged_in?(session)
-      binding.pry
+
       erb :'/users/main'
       #will need to add something to make sure current user is right
     else
