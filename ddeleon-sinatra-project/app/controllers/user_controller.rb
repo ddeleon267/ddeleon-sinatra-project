@@ -82,7 +82,7 @@ end
   get '/logout' do
     #if logged in, clear session, redirect to login
     #otherwise, redirect to main index page. could change these redirects as well
-    if logged_in?(session)
+    if logged_in?
       session.clear
       redirect to '/login'
     else
