@@ -1,0 +1,10 @@
+<h2> Edit Routine </h2>
+
+<form method="post" action="/routines/<%=@routine.id%>">
+  <input id="hidden" type="hidden" name="_method" value="PATCH">
+
+  <input type="text" name="name" value="<%= @routine.name %>">
+  <input type="text" name="products" value="<%= @routine.products.collect {|product| product.name}.join(",") %>">
+  <input type="text" name="description" value="<%= @routine.description %>">
+  <input type="submit" value="submit">
+</form>
