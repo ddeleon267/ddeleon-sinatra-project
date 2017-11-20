@@ -41,7 +41,6 @@ end
     @user = User.find_by(username: params[:username])
     if @user && @user.authenticate(params[:password])
       session[:id] = @user.id
-
       redirect to "/users/#{@user.slug}/main"
     else
       redirect to '/signup'
