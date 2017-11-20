@@ -43,4 +43,32 @@ class RoutinesController < ApplicationController
       redirect to '/login'
     end
   end
+
+  ############ UPDATE ###########
+  get '/routines/:id/edit' do
+    if logged_in?
+      @routine = Routine.find(params[:id])
+      erb :'/routines/edit'
+    else
+      redirect to '/login'
+    end
+  end
+
+  patch '/routines/:id' do
+	  @routine = Routine.find(params[:id])
+    # binding.pry
+      if current_user.id == @routine.user_id
+	      @routine.name = params[:name]
+       #@routine.products = params[:products].split(",") WHAT TO DOOOOOO????
+        @routine.description = params[:description]
+
+        if @routine.save
+          redirect to "/routines/#{@routine.id}"
+        else
+          redirect to "/routines/#{@routine.id}/edit"
+        end
+      else
+        redirect to "/routines"
+      end
+	end
 end
