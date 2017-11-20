@@ -17,7 +17,11 @@ class ApplicationController < Sinatra::Base
 
   get '/' do
     # binding.pry
-    "Hello, World!!!"
+    if logged_in?
+      redirect to "/users/#{current_user.slug}/main"
+    else
+      erb :index
+    end
   end
 
 end
