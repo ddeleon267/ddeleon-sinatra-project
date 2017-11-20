@@ -11,21 +11,18 @@ get '/signup' do
   end
 end
 
-  post '/signup' do
-    #would like to be able to do this with just params
-    user = User.new(username: params[:username], email: params[:email], password: params[:password])
-    if params[:username] != "" && params[:email] != "" && params[:password] != ""
-      user.save
-      session[:id] = user.id
-      # binding.pry
-      redirect to "/users/#{@user.slug}/main"
-    # binding.pry
-    else
-      redirect to '/signup'
-    end
-    #redirect somewhere.... like page that lists all routines??
-    #otherwise...redirect to signup page or do flash message
+post '/signup' do
+  #would like to be able to do this with just params
+  @user = User.new(username: params[:username], email: params[:email], password: params[:password])
+  if @user.save
+    session[:id] = @user.id
+    redirect to "/users/#{@user.slug}/main"
+  else
+    redirect to '/signup'
   end
+  #redirect somewhere.... like page that lists all routines??
+  #otherwise...redirect to signup page or do flash message
+end
 
   ############ LOGIN ############
 
