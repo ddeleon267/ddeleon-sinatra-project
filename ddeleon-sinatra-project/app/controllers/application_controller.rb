@@ -9,6 +9,15 @@ class ApplicationController < Sinatra::Base
     set :session_secret, "password_security"
   end
 
+  get '/' do
+    # binding.pry
+    if logged_in?
+      redirect to "/users/#{current_user.slug}/main"
+    else
+      erb :index
+    end
+  end
+
   helpers do
     def logged_in?
       !!current_user
@@ -16,15 +25,6 @@ class ApplicationController < Sinatra::Base
 
     def current_user
       @current_user ||= User.find(session[:id]) if session[:id]
-    end
-  end
-
-  get '/' do
-    # binding.pry
-    if logged_in?
-      redirect to "/users/#{current_user.slug}/main"
-    else
-      erb :index
     end
   end
 

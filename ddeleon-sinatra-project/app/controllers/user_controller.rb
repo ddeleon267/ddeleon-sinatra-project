@@ -1,15 +1,15 @@
 class UserController < ApplicationController
 ########### SIGNUP #############
 
-  get '/signup' do
-    # if the user is logged in, take them to their hom page. otherwise, direct to signup
-    # page ----> need helper method for whether a user is logged in.
-    if !logged_in?(session)
-      erb :'/users/signup'
-    else
-      redirect to "/users/#{@user.slug}/main"
-    end
+get '/signup' do
+  # if the user is logged in, take them to their hom page. otherwise, direct to signup
+  # page ----> need helper method for whether a user is logged in.
+  if !logged_in?
+    erb :'/users/signup'
+  else
+    redirect to "/users/#{current_user.slug}/main"
   end
+end
 
   post '/signup' do
     #would like to be able to do this with just params
