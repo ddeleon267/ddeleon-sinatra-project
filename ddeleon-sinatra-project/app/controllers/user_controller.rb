@@ -28,10 +28,10 @@ end
 
   get '/login' do
     #if user not logged in, show login form
-    if !logged_in?(session)
+    if !logged_in?
       erb :'users/login'
     else
-      redirect to "/users/#{@user.slug}/main"
+      redirect to "/users/#{current_user.slug}/main"
     #otherwise redirect to their main page, whatever that is
     end
   end
