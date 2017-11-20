@@ -1,4 +1,4 @@
-HALLO THESE ARE THE ROUTINES
+<h1>My Routines</h1>
 <%@routines.each do |routine|%>
-  <li><%=routine.name%></li>
+  <li><a href= "/routines/<%=routine.id%>"><%=routine.name%></a></li>
 <%end%>
