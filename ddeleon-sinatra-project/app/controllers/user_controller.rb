@@ -67,9 +67,14 @@ end
 
 
   get '/users/:slug' do
-    #find user by slug
-    @user = User.find_by_slug(params[:slug])
-    erb :'/users/show'
+    #user show page ---> for other users and owner to see ---> kind of like FB timeline
+    if logged_in?
+      @user = User.find_by_slug(params[:slug])
+      @user_routines = @user.routines
+      erb :'/users/show'
+    else
+      redirect to '/login'
+    end
   end
 
   ############ LOGOUT ############
