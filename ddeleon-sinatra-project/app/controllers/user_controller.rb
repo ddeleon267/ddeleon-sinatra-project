@@ -51,13 +51,13 @@ end
   end
 
   ############ SHOW USER ############
-  #not sure what to do with this routines
-  #this is not working right
-  #UGHHHHHHHHH
   get '/users/:slug/main' do
     @user = User.find_by_slug(params[:slug])
+    #users show page --> only user can see this page --> kind of like your FB home page
 
-    if logged_in?(session)
+    if logged_in?
+      @routines = Routine.all
+      @products = Product.all
       erb :'/users/main'
       #will need to add something to make sure current user is right
     else
