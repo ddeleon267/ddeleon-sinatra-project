@@ -2,7 +2,7 @@ class RoutinesController < ApplicationController
 
   ############ CREATE ###########
   get '/routines/new' do
-    if logged_in?(session)
+    if logged_in?
       erb :'routines/new'
     else
       redirect to '/login'
