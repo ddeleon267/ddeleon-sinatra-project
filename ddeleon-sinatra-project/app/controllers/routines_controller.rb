@@ -26,8 +26,9 @@ class RoutinesController < ApplicationController
 
   ############ READ ###########
   get '/routines' do
-    @routines = Routine.all  ###this is going to need to be modified
-    if logged_in?(session)
+  ###this is going to need to be modified
+    if logged_in?
+      @routines = current_user.routines.all
       erb :'/routines/index'
     else
       redirect to '/login'
@@ -35,7 +36,7 @@ class RoutinesController < ApplicationController
   end
 
   get '/routines/:id' do
-    if logged_in?(session)
+    if logged_in?
       @routine = Routine.find(params[:id])
       erb :'/routines/show'
     else
