@@ -1,3 +1,9 @@
+GIT
+  remote: https://github.com/bmabey/database_cleaner.git
+  revision: 8c14a276ddb8115bb391d59cdf6b706577d29678
+  specs:
+    database_cleaner (1.6.2)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -108,6 +114,7 @@ DEPENDENCIES
   activerecord
   bcrypt
   capybara
+  database_cleaner!
   pry
   rack-flash3
   rack-test

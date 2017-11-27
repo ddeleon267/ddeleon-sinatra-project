@@ -1,11 +1,13 @@
-<h2>Routine: <%=@routine.name%></h2>
+<h2> <%= current_user.username %> </h2>
+<h1>Routine: <%=@routine.name%></h1>
 
 <h3>Products Used</h3>
 <%@routine.products.each do |product| %>
   <li><%=product.name%></li>
 <%end%>
 
-<h3>Description: <%=@routine.description%></h3>
+<h3>Description: </h3>
+<p><%=@routine.description%></p>
 
 <!--probably doing to want to modify table for routines at some point; will probably be better
 to have a brief description plus a longer recipe-style description. more convenent to use the former
