@@ -7,6 +7,8 @@
 
 <p><a href="/routines">View or Edit Your Existing Routines</a></p>
 
+<p><a href="/users/<%=current_user.slug%>">View your user profile</a></p>
+
 <h3>Recently Added Routines From the Community</h3>
 <%if !@routines.empty?%>
   <%@routines.reverse.each do |routine|%>
