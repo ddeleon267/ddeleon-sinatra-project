@@ -16,6 +16,7 @@ post '/signup' do
   @user = User.new(username: params[:username], email: params[:email], password: params[:password])
   if @user.save
     session[:id] = @user.id
+
     redirect to "/users/#{@user.slug}/main"
   else
     redirect to '/signup'
@@ -23,9 +24,9 @@ post '/signup' do
   #redirect somewhere.... like page that lists all routines??
   #otherwise...redirect to signup page or do flash message
 end
-
-  ############ LOGIN ############
-
+#
+#   ############ LOGIN ############
+#
   get '/login' do
     #if user not logged in, show login form
     if !logged_in?
@@ -35,7 +36,7 @@ end
     #otherwise redirect to their main page, whatever that is
     end
   end
-
+#
   post '/login' do
     #find user
     @user = User.find_by(username: params[:username])
@@ -49,9 +50,10 @@ end
     #if user exists and pasword matches, set session id and redirect to main page
     #otherwise redirect back to signup
   end
-
-  ############ SHOW USER ############
+#
+#   ############ SHOW USER ############
   get '/users/:slug/main' do
+
     @user = User.find_by_slug(params[:slug])
     #users show page --> only user can see this page --> kind of like your FB home page
 
@@ -64,21 +66,22 @@ end
       redirect to '/login'
     end
   end
-
-
+#
+#
   get '/users/:slug' do
     #user show page ---> for other users and owner to see ---> kind of like FB timeline
     if logged_in?
+
       @user = User.find_by_slug(params[:slug])
-      @user_routines = @user.routines
+      @user_routines = @user.routines 
       erb :'/users/show'
     else
       redirect to '/login'
     end
   end
-
-  ############ LOGOUT ############
-
+#
+#   ############ LOGOUT ############
+#
   get '/logout' do
     #if logged in, clear session, redirect to login
     #otherwise, redirect to main index page. could change these redirects as well

@@ -4,11 +4,16 @@
 <p>Skin Type: </p>
 <p>Skin Concerns:</p>
 
-<h3>This User's Routines Routines</h3>
-<%@user_routines.reverse.each do |routine|%>
-  <ul><a href='/routines/<%=routine.id%>'><%=routine.name%></a>
-      <%routine.products.each do |product|%>
-        <li><%=product.name%></li>
-      <%end%>
-  </ul>
+<h3>This User's Routines </h3>
+
+<% if @user_routines.empty? %>
+  <p>This user had not added any routines yet<p>
+<%else%>
+  <%@user_routines.reverse.each do |routine|%>
+    <ul><a href='/routines/<%=routine.id%>'><%=routine.name%></a>
+        <%routine.products.each do |product|%>
+          <li><%=product.name%></li>
+        <%end%>
+    </ul>
+  <%end%>
 <%end%>
