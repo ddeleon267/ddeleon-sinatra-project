@@ -1,6 +1,11 @@
 <h1>My Routines</h1>
-<%@routines.each do |routine|%>
-  <li><a href= "/routines/<%=routine.id%>"><%=routine.name%></a></li>
-<%end%>
+
+<% if !@routines.empty? %>
+  <%@routines.each do |routine|%>
+    <li><a href= "/routines/<%=routine.id%>"><%=routine.name%></a></li>
+  <%end%>
+<% else %>
+  <p><a href="/routines/new">Create a New Routine</a></p>
+<% end %>
 
 <!-- <a href= "/users/<%=current_user.slug%>/main"> Return to home page </a> -->
