@@ -1,25 +1,4 @@
 class UsersController < ApplicationController
-########### SIGNUP #############
-
-get '/signup' do
-  if !logged_in?
-    erb :'/users/signup'
-  else
-    redirect to "/home"
-  end
-end
-
-post '/signup' do
-  #would like to be able to do this with just params
-  @user = User.new(username: params[:username], email: params[:email], password: params[:password])
-  if @user.save
-    session[:id] = @user.id
-
-    redirect to "/home"
-  else
-    redirect to '/signup'
-  end
-end
 
 ############ LOGIN ############
 
@@ -35,12 +14,46 @@ end
     @user = User.find_by(username: params[:username])
     #if user exists and pasword matches
     if @user && @user.authenticate(params[:password])
+      # flash[:message] = ""
       session[:id] = @user.id
       redirect to "/home"
+    # elsif @user && !@user.authenticate(params[:password])
+    #   flash[:message] = "Invalid Password - Please try again."
+    #   redirect to '/login'
     else
+      # flash[:message] = "No such user was found - Please try again."
+      # erb :'/users/login'
       redirect to '/signup'
     end
   end
+
+########### SIGNUP #############
+
+get '/signup' do
+  if !logged_in?
+    erb :'/users/signup'
+  else
+    redirect to "/home"
+  end
+end
+
+post '/signup' do
+  #would like to be able to do this with just params
+  if User.find_by(username: params[:username])
+    # flash[:message] = "That username is taken, please try another one!"
+    redirect '/signup'
+  else
+    @user = User.new(username: params[:username], email: params[:email], password: params[:password])
+    if @user.save
+      session[:id] = @user.id
+
+      redirect to "/home"
+    else
+      #flash[:message] = "Invalid Signup Details - Password must be 6+ characters in length, Email must be in standard format."
+      redirect to '/signup'
+    end
+  end
+end
 
 ############ SHOW USER ############
   get '/home' do
@@ -72,11 +85,7 @@ end
   get '/logout' do
     #if logged in, clear session, redirect to login
     #otherwise, redirect to main index page. could change these redirects as well
-    if logged_in?
-      session.clear
-      redirect to '/login'
-    else
-      redirect to '/'
-    end
+    session.clear
+    redirect to '/'
   end
 end
