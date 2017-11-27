@@ -5,7 +5,7 @@ get '/signup' do
   if !logged_in?
     erb :'/users/signup'
   else
-    redirect to "/users/#{current_user.slug}/main"
+    redirect to "/home"
   end
 end
 
@@ -15,7 +15,7 @@ post '/signup' do
   if @user.save
     session[:id] = @user.id
 
-    redirect to "/users/#{@user.slug}/main"
+    redirect to "/home"
   else
     redirect to '/signup'
   end
@@ -27,7 +27,7 @@ end
     if !logged_in?
       erb :'users/login'
     else
-      redirect to "/users/#{current_user.slug}/main"
+      redirect to "/home"
     end
   end
 
@@ -36,25 +36,21 @@ end
     #if user exists and pasword matches
     if @user && @user.authenticate(params[:password])
       session[:id] = @user.id
-      redirect to "/users/#{@user.slug}/main"
+      redirect to "/home"
     else
       redirect to '/signup'
     end
   end
 
 ############ SHOW USER ############
-  get '/users/:slug/main' do ########
+  get '/home' do
+    @user = current_user
 
-    @user = User.find_by_slug(params[:slug])
-    #users main page --> only user can see this page --> kind of like your FB home page
-
-    if logged_in? && current_user.id == @user.id
+    if logged_in?
       @routines = Routine.all
       @products = Product.all
-      erb :'/users/main'
-    elsif  logged_in? && current_user.id != @user.id
-      redirect to "/users/#{current_user.slug}/main"
-      #will need to add something to make sure current user is right
+
+      erb :'/users/home'
     else
       redirect to '/login'
     end
@@ -63,7 +59,6 @@ end
   get '/users/:slug' do
     #user show page ---> for other users and owner to see ---> kind of like FB timeline
     if logged_in?
-
       @user = User.find_by_slug(params[:slug])
       @user_routines = @user.routines
       erb :'/users/show'
