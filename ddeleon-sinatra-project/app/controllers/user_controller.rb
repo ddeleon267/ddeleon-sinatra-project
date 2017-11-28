@@ -63,8 +63,10 @@ end
     @user = current_user
 
     if logged_in?
+      #maybe instead of dipping into all of these just get the last ten off the bat?
       @routines = Routine.all
       @products = Product.all
+      @users = User.all
 
       erb :'/users/home'
     else
