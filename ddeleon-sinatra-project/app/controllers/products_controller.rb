@@ -1,5 +1,6 @@
 class ProductsController < ApplicationController
 
+############ CREATE ###########
   get '/products/new' do
     if logged_in?
       erb :'products/new'
@@ -10,6 +11,7 @@ class ProductsController < ApplicationController
 
   post '/products' do
     if !params[:product][:name].empty?
+
       if Product.find_by(name: params[:product][:name])
         redirect to '/products/new'
         #flash message -- this product exitss
@@ -23,15 +25,21 @@ class ProductsController < ApplicationController
           binding.pry
         redirect '/products'
       end
+
     else params[:product][:name].empty?
       #flash message
       redirect '/products/new'
     end
   end
 
+############ READ ###########
   get '/products' do
-    @products = Product.all
-    erb :'products/index'
+    if logged_in?
+      @products = Product.all
+      erb :'products/index'
+    else
+      redirect to '/login'
+    end
   end
 
 end
