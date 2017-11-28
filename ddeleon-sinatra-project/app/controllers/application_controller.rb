@@ -14,9 +14,8 @@ class ApplicationController < Sinatra::Base
   use Rack::Flash
 
   get '/' do
-    # binding.pry
     if logged_in?
-      redirect to "/users/#{current_user.slug}/main"
+      redirect to "/home"
     else
       erb :index
     end

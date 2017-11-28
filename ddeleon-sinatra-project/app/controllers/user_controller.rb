@@ -22,8 +22,7 @@ class UsersController < ApplicationController
       redirect to '/login'
     else
       flash[:message] = "No such user was found - Please try again."
-      erb :'/users/login'
-      redirect to '/signup'
+      redirect to '/login'
     end
   end
 
@@ -40,7 +39,10 @@ end
 post '/signup' do
   #would like to be able to do this with just params
   if User.find_by(username: params[:username])
-    flash[:message] = "That username is taken, please try another one!"
+    flash[:message] = "That username is taken. Please try again."
+    redirect '/signup'
+  elsif User.find_by(email: params[:email])
+    flash[:message] = "That email is registered to another user. Please log in or try again."
     redirect '/signup'
   else
     @user = User.new(username: params[:username], email: params[:email], password: params[:password])
@@ -49,6 +51,7 @@ post '/signup' do
 
       redirect to "/home"
     else
+      ##I don't know if this is actually being triggered at any point
       flash[:message] = "Invalid Signup Details - Password must be 6+ characters in length, Email must be in standard format."
       redirect to '/signup'
     end
