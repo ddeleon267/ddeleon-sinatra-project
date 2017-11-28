@@ -1,0 +1,10 @@
+<form method="POST" action="/products/<%=@product.id%>">
+  <input id="hidden" type="hidden" name="_method" value="PATCH">
+
+    Product Name: <input type="text" name="product[name]" value="<%= @product.name %>"></input>
+    Category: <input type="text" name="product[category]" value="<%= @product.category %>"></input>
+    Ingredients: <input type="text-area" name="product[ingredients]" value="<%= @product.ingredients %>"></input>
+    Notes: <input type="text" name="product[notes]" value="<%= @product.notes %>"></input>
+
+    <input type="submit" name="Submit Product" value="Submit Product"></input>
+</form>

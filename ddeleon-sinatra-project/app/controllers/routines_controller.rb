@@ -59,11 +59,13 @@ class RoutinesController < ApplicationController
   end
 
   patch '/routines/:id' do
+    ##need to fix this
+    binding.pry
 	  @routine = Routine.find(params[:id])
-    # binding.pry
+
       if current_user.id == @routine.user_id
 	      @routine.name = params[:routine][:name]
-       #@routine.products = params[:products].split(",") WHAT TO DOOOOOO????
+        #####@routine.products = params[:routine][:products].split(",")
         @routine.description = params[:routine][:description]
 
         if @routine.save
