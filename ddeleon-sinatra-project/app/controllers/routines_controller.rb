@@ -10,24 +10,28 @@ class RoutinesController < ApplicationController
   end
 
   post '/routines' do
-    # binding.pry
-    if params[:name] != "" && params[:products] != []
-      routine = Routine.new(
-        name: params[:name],
-        products: params[:products].split(",").collect {|name| Product.create(name: name)},
-        description: params[:description]
+
+    if !params[:routine][:name].empty? && !params[:routine][:description].empty?
+      @routine = Routine.new(
+        name: params[:routine][:name],
+        products: params[:routine][:products].split(",").collect {|name| Product.create(name: name)},
+        description: params[:routine][:description]
         )
-      routine.user_id = session[:id]
-      routine.save
-      redirect to '/routines'
+
+      @routine.user_id = session[:id]
+      @routine.save
+
+      erb :'routines/show'
+    else
+      redirect '/routines/new'
     end
-    redirect to '/routines/new'
   end
 
   ############ READ ###########
   get '/routines' do
   ###this is going to need to be modified
     if logged_in?
+
       @routines = current_user.routines.all
       erb :'/routines/index'
     else
