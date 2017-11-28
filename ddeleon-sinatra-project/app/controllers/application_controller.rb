@@ -1,4 +1,6 @@
 require './config/environment'
+require 'rack-flash'
+
 class ApplicationController < Sinatra::Base
 
   configure do
@@ -8,6 +10,8 @@ class ApplicationController < Sinatra::Base
     enable :sessions
     set :session_secret, "password_security"
   end
+
+  use Rack::Flash
 
   get '/' do
     # binding.pry
