@@ -62,9 +62,9 @@ class RoutinesController < ApplicationController
 	  @routine = Routine.find(params[:id])
     # binding.pry
       if current_user.id == @routine.user_id
-	      @routine.name = params[:name]
+	      @routine.name = params[:routine][:name]
        #@routine.products = params[:products].split(",") WHAT TO DOOOOOO????
-        @routine.description = params[:description]
+        @routine.description = params[:routine][:description]
 
         if @routine.save
           redirect to "/routines/#{@routine.id}"

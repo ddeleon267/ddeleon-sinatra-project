@@ -3,8 +3,14 @@
 <form method="post" action="/routines/<%=@routine.id%>">
   <input id="hidden" type="hidden" name="_method" value="PATCH">
 
-  <input type="text" name="name" value="<%= @routine.name %>">
-  <input type="text" name="products" value="<%= @routine.products.collect {|product| product.name}.join(",") %>">
-  <input type="text" name="description" value="<%= @routine.description %>">
+  <label for="name">Routine Name (e.g. "Winter Morning," "Fall Evening")</label><br></br>
+  <input type="text" name="routine[name]" value="<%= @routine.name %>"><br></br>
+
+  <label for="products">Products</label><br></br>
+  <input type="text-area" name="routine[products]" value="<%= @routine.products.collect {|product| product.name}.join(",") %>">
+
+  <label for="description">Description</label><br></br>
+  <input type="text" name="routine[description]" value="<%= @routine.description %>">
+
   <input type="submit" value="submit">
 </form>
