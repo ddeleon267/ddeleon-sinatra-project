@@ -42,4 +42,13 @@ class ProductsController < ApplicationController
     end
   end
 
+  get '/products/:id' do
+    if logged_in?
+      @product = Product.find(params[:id])
+      erb :'/products/show'
+    else
+      redirect to '/login'
+    end
+  end
+
 end
