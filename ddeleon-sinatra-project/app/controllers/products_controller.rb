@@ -51,4 +51,15 @@ class ProductsController < ApplicationController
     end
   end
 
+############ UPDATE ###########
+
+get '/products/:id/edit' do
+  if logged_in?
+    @product = Product.find(params[:id])
+    erb :'/products/edit'
+  else
+    redirect to '/login'
+  end
+end
+
 end
