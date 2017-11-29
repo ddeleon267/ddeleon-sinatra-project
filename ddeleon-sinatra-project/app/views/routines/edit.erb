@@ -18,8 +18,9 @@
   <%end%>
 
   <br></br>
+    <p>Add/Remove Products</p>
     <%Product.all[0,10].each do |product|%>
-      <input type="checkbox" name="routine[product_ids][]" value="<%=product.id%>"><%=product.name%><br></input>
+      <input type="checkbox" name="routine[product_ids][]" value="<%=product.id%>"<%='checked' if @routine.products.include?(product)%>><%=product.name%><br></input>
     <%end%><br>
 
     <a href="/products/new">Or, click here to save a new product to the database first.</a><br></br><br></br>
