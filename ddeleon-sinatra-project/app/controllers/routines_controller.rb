@@ -60,7 +60,7 @@ class RoutinesController < ApplicationController
 
   patch '/routines/:id' do
     ##need to fix this
-    binding.pry
+    
 	  @routine = Routine.find(params[:id])
 
       if current_user.id == @routine.user_id

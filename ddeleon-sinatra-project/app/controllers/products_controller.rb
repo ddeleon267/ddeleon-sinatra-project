@@ -64,14 +64,14 @@ class ProductsController < ApplicationController
 
   patch '/products/:id' do
 
-    @product = Product.find(params[:product][:id])
+    @product = Product.find(params[:id])
 
     if !params[:product][:name].empty?
       @product.name = params[:product][:name]
       @product.category = params[:product][:category]
       @product.ingredients = params[:product][:ingredients]
       @product.notes = params[:product][:notes]
-      @product.update
+      @product.save
       redirect to "/products/#{@product.id}"
     else
       redirect to "/products/#{@product.id}/edit"
