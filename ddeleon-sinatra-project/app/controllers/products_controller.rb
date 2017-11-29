@@ -10,7 +10,7 @@ class ProductsController < ApplicationController
   end
 
   post '/products' do
-    if !params[:product][:name].empty?
+    if logged_in? && !params[:product][:name].empty?
 
       if Product.find_by(name: params[:product][:name])
         redirect to '/products/new'
@@ -26,9 +26,11 @@ class ProductsController < ApplicationController
         redirect to "/products/#{@product.id}"
       end
 
-    else params[:product][:name].empty?
+    elsif params[:product][:name].empty?
       #flash message
       redirect '/products/new'
+    else
+      redirect '/login'
     end
   end
 
@@ -51,34 +53,33 @@ class ProductsController < ApplicationController
     end
   end
 
-############ UPDATE ###########
-
-  get '/products/:id/edit' do
-    if logged_in?
-      @product = Product.find(params[:id])
-      erb :'/products/edit'
-    else
-      redirect to '/login'
-    end
-  end
-
-  patch '/products/:id' do
-
-    @product = Product.find(params[:id])
-
-    if !params[:product][:name].empty?
-      @product.name = params[:product][:name]
-      @product.category = params[:product][:category]
-      @product.ingredients = params[:product][:ingredients]
-      @product.notes = params[:product][:notes]
-      @product.save
-      redirect to "/products/#{@product.id}"
-    else
-      redirect to "/products/#{@product.id}/edit"
-    end
-  end
-
-
+# ############ UPDATE ###########
+#
+#   get '/products/:id/edit' do
+#     if logged_in?
+#       @product = Product.find(params[:id])
+#       erb :'/products/edit'
+#     else
+#       redirect to '/login'
+#     end
+#   end
+#
+#   patch '/products/:id' do
+#
+#     @product = Product.find(params[:id])
+#
+#     if !params[:product][:name].empty?
+#       @product.name = params[:product][:name]
+#       @product.category = params[:product][:category]
+#       @product.ingredients = params[:product][:ingredients]
+#       @product.notes = params[:product][:notes]
+#       @product.save
+#       redirect to "/products/#{@product.id}"
+#     else
+#       redirect to "/products/#{@product.id}/edit"
+#     end
+#   end
+#
 
 
 end
