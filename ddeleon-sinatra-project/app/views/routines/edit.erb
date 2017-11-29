@@ -1,14 +1,30 @@
 <h2> Edit Routine </h2>
 
 <form method="post" action="/routines/<%=@routine.id%>">
+
   <input id="hidden" type="hidden" name="_method" value="PATCH">
 
   <label for="name">Routine Name (e.g. "Winter Morning," "Fall Evening")</label><br></br>
   <input type="text" name="routine[name]" value="<%= @routine.name %>"><br></br>
 
   <label for="products">Products</label><br></br>
-  <input type="text-area" name="routine[products]" value="<%= @routine.products.collect {|product| product.name}.join(",") %>">
 
+
+  <% @routine.routine_products.each do |product| %>
+    <li><%= Product.find(product.product_id).name%> |
+    <%= Product.find(product.product_id).category%> |
+    <%= Product.find(product.product_id).ingredients%> |
+    <%= Product.find(product.product_id).notes%></li>
+  <%end%>
+
+  <br></br>
+    <%Product.all[0,10].each do |product|%>
+      <input type="checkbox" name="routine[product_ids][]" value="<%=product.id%>"><%=product.name%><br></input>
+    <%end%><br>
+
+    <a href="/products/new">Or, click here to save a new product to the database first.</a><br></br><br></br>
+
+    <br>
   <label for="description">Description</label><br></br>
   <input type="text" name="routine[description]" value="<%= @routine.description %>">
 
