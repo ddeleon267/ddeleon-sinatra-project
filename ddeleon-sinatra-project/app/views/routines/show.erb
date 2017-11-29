@@ -9,6 +9,8 @@
 <h3>Description: </h3>
 <p><%=@routine.description%></p>
 
+<a href= "/routines/<%=@routine.id %>/edit"> Edit This Routine </a>
+
 <form method="POST" action="/routines/<%=@routine.id%>/delete">
       <input id="hidden" type="hidden" name="_method" value="delete">
       <input id="delete_button" type="submit" name="Delete Routine" value="Delete Routine"></input>

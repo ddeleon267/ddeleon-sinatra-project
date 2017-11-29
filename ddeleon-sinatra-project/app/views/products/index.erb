@@ -1,4 +1,7 @@
-dis where da products live
+<!-- This page currently displays all products.
+  Is this what I want? or do I just want a user to be be able to see all the
+products he or she uses?
+-->
 
 <%@products.each do |product| %>
   <li><a href="/products/<%=product.id%>"><%=product.name%></a></li>
