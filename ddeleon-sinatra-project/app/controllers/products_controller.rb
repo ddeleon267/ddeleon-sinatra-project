@@ -82,6 +82,18 @@ class ProductsController < ApplicationController
     end
   end
 
+  ############ DELETE #############
 
+  delete '/products/:id/delete' do
+    @product = Product.find(params[:id])
+    if logged_in?
+      @product.delete
+      # flash[:message] = "This product has been deleted"
+      redirect to '/products'
+    else
+      redirect to '/login'
+    end
+
+  end
 
 end

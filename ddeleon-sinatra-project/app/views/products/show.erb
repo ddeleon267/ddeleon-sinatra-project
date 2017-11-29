@@ -2,3 +2,7 @@
 <li> <%= @product.category %> </li>
 <li> <%= @product.ingredients %> </li>
 <li> <%= @product.notes %> </li>
+
+<form method="POST" action="/products/<%=@product.id%>/delete">
+      <input id="hidden" type="hidden" name="_method" value="delete">
+      <input id="delete_button" type="submit" name="Delete Product" value="Delete Product"></input>
