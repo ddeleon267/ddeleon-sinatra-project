@@ -29,6 +29,6 @@
 <h3>Explore New Users!</h3>
 <%if !@users.empty?%>
   <%@users.reverse.take(10).each do |user|%>
-    <li><%=user.username%></li>
+    <li><a href="/users/<%=user.slug%>"><%=user.username%></a></li>
   <%end%>
 <%end%>
