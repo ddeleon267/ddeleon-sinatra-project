@@ -10,13 +10,14 @@ class RoutinesController < ApplicationController
   end
 
   post '/routines' do
-
+    
     if !params[:routine][:name].empty? && !params[:routine][:description].empty?
-      @routine = Routine.new(
-        name: params[:routine][:name],
-        products: params[:routine][:products].split(",").collect {|name| Product.create(name: name)},
-        description: params[:routine][:description]
-        )
+      @routine = Routine.new(params[:routine])
+      # @routine = Routine.new(
+      #   name: params[:routine][:name],
+      #   products: params[:routine][:products].split(",").collect {|name| Product.create(name: name)},
+      #   description: params[:routine][:description]
+      #   )
 
       @routine.user_id = session[:id]
       @routine.save
