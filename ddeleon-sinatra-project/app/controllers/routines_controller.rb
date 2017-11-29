@@ -63,10 +63,18 @@ class RoutinesController < ApplicationController
 
 	  @routine = Routine.find(params[:id])
 
+    last_name = @routine.name
+    # last_products = @routine.products
+    last_description = @routine.description
+
       if current_user.id == @routine.user_id
-	      @routine.name = params[:routine][:name]
-        #####@routine.products = params[:routine][:products].split(",")
-        @routine.description = params[:routine][:description]
+	      @routine.update(name: params[:routine][:name])
+        # @routine.update(products: params[:routine][:products])
+        @routine.update(description: params[:routine][:description])
+
+        @routine.update(name: last_name) if params[:routine][:name].empty?
+        # @routine.update(products: last_products) if params[:routine][:products].empty?
+        @routine.update(description: last_description) if params[:routine][:description].empty?
 
         if @routine.save
           redirect to "/routines/#{@routine.id}"
