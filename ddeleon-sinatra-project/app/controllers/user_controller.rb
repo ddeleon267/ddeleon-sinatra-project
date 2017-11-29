@@ -1,5 +1,5 @@
-class UsersController < ApplicationController
 
+class UsersController < ApplicationController
 ############ LOGIN ############
 
   get '/login' do
@@ -37,7 +37,6 @@ get '/signup' do
 end
 
 post '/signup' do
-  #would like to be able to do this with just params
   if User.find_by(username: params[:username])
     flash[:message] = "That username is taken. Please try again."
     redirect '/signup'
@@ -46,15 +45,14 @@ post '/signup' do
     redirect '/signup'
   else
     @user = User.new(username: params[:username], email: params[:email], password: params[:password])
-    if @user.save
-      session[:id] = @user.id
-
-      redirect to "/home"
-    else
-      ##I don't know if this is actually being triggered at any point
-      flash[:message] = "Invalid Signup Details - Password must be 6+ characters in length, Email must be in standard format."
-      redirect to '/signup'
-    end
+      if @user.save
+        session[:id] = @user.id
+        redirect to "/home"
+      else
+        ##I don't know if this is actually being triggered at any point
+        flash[:message] = "Invalid Signup Details - Password must be 6+ characters in length, Email must be in standard format."
+        redirect to '/signup'
+      end
   end
 end
 

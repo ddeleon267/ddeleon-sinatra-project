@@ -1,8 +1,8 @@
 GIT
   remote: https://github.com/bmabey/database_cleaner.git
-  revision: 8c14a276ddb8115bb391d59cdf6b706577d29678
+  revision: db928d229ef14486fd55f2fd42227d2412566702
   specs:
-    database_cleaner (1.6.2)
+    database_cleaner (1.6.3)
 
 GEM
   remote: https://rubygems.org/
@@ -23,7 +23,7 @@ GEM
     arel (8.0.0)
     bcrypt (3.1.11)
     bond (0.5.1)
-    capybara (2.16.0)
+    capybara (2.16.1)
       addressable
       mini_mime (>= 0.1.3)
       nokogiri (>= 1.3.3)
@@ -55,7 +55,7 @@ GEM
       rack
     rack-test (0.6.3)
       rack (>= 1.0)
-    rake (12.2.1)
+    rake (12.3.0)
     require_all (1.4.0)
     ripl (0.7.1)
       bond (~> 0.5.1)
