@@ -22,7 +22,7 @@
 <h3>Recently Added Products From the Community</h3>
 <%if !@products.empty?%>
   <%@products.reverse.take(10).each do |product|%>
-    <li><%=product.name%></li>
+    <li><a href="/products/<%=product.id%>"><%=product.name%></a></li>
   <%end%>
 <%end%>
 
