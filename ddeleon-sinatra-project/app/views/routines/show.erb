@@ -9,6 +9,10 @@
 <h3>Description: </h3>
 <p><%=@routine.description%></p>
 
+<form method="POST" action="/routines/<%=@routine.id%>/delete">
+      <input id="hidden" type="hidden" name="_method" value="delete">
+      <input id="delete_button" type="submit" name="Delete Routine" value="Delete Routine"></input>
+
 <a href= "/routines"> Go back to your routines </a>
 
 <!--probably doing to want to modify table for routines at some point; will probably be better

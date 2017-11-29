@@ -60,7 +60,7 @@ class RoutinesController < ApplicationController
 
   patch '/routines/:id' do
     ##need to fix this
-    
+
 	  @routine = Routine.find(params[:id])
 
       if current_user.id == @routine.user_id
@@ -77,4 +77,18 @@ class RoutinesController < ApplicationController
         redirect to "/routines"
       end
 	end
+
+  ############ DELETE #############
+
+  delete '/routines/:id/delete' do
+    @routine = Routine.find(params[:id])
+    if logged_in? && @routine.user == current_user
+      @routine.delete
+      # flash[:message] = "This routine has been deleted"
+      redirect to '/home'
+    else
+      redirect to '/login'
+    end
+
+  end
 end
