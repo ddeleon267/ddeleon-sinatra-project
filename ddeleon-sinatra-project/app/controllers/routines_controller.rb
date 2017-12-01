@@ -10,15 +10,9 @@ class RoutinesController < ApplicationController
   end
 
   post '/routines' do
-    
+
     if !params[:routine][:name].empty? && !params[:routine][:description].empty?
       @routine = Routine.new(params[:routine])
-      # @routine = Routine.new(
-      #   name: params[:routine][:name],
-      #   products: params[:routine][:products].split(",").collect {|name| Product.create(name: name)},
-      #   description: params[:routine][:description]
-      #   )
-
       @routine.user_id = session[:id]
       @routine.save
 
@@ -60,8 +54,6 @@ class RoutinesController < ApplicationController
   end
 
   patch '/routines/:id' do
-    ##need to fix this
-
 	  @routine = Routine.find(params[:id])
 
     last_name = @routine.name

@@ -13,7 +13,7 @@ class ProductsController < ApplicationController
     if logged_in? && !params[:product][:name].empty?
 
       if Product.find_by(name: params[:product][:name])
-        redirect to '/products/new'  #so we know that this works
+        redirect to '/products/new'
         #flash message -- this product exitss
       else
         @product = Product.create(
@@ -22,7 +22,6 @@ class ProductsController < ApplicationController
           ingredients: params[:product][:ingredients],
           notes: params[:product][:notes],
           )
-
         redirect to "/products/#{@product.id}"
       end
 
@@ -54,8 +53,9 @@ class ProductsController < ApplicationController
   end
 
 
-###JUST FOR MEEE!!!!
-############ UPDATE ###########
+#### I don't necessarily want the user to have this functionality but it's helpful for me to have around for now.
+
+########### UPDATE ###########
 
   get '/products/:id/edit' do
     if logged_in?

@@ -5,11 +5,10 @@ class ApplicationController < Sinatra::Base
 
   configure do
     register Sinatra::ActiveRecordExtension
-    # set :public_folder, 'public'
+    set :session_secret, "password_security"
     set :views, Proc.new { File.join(root, "../views/") }
     enable :sessions
     use Rack::Flash
-    set :session_secret, "password_security"
   end
 
   get '/' do
@@ -29,5 +28,4 @@ class ApplicationController < Sinatra::Base
       @current_user ||= User.find(session[:id]) if session[:id]
     end
   end
-
 end
