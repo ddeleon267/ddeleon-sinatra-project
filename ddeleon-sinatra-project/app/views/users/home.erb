@@ -13,6 +13,7 @@
 <%if !@routines.empty?%>
   <%@routines.reverse.take(10).each do |routine|%>
     <ul><a href="/routines/<%=routine.id%>"><%=routine.name%></a>
+      <!--would be nice to say 'you' for routines created by current user -->
       <li>Added by <%=routine.user.username%></li>
       <li><%=routine.description%></li>
     </ul>
