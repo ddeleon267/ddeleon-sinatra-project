@@ -5,8 +5,9 @@
     <li><a href= "/routines/<%=routine.id%>"><%=routine.name%></a></li>
   <%end%>
 <% else %>
-  <p><a href="/routines/new">Create a New Routine</a></p>
+  <p>You don't currently have any routines!</p>
 <% end %>
+<a href="/routines/new">Create a New Routine</a>
 
 <br>
 <a href= "/home"> Return to home page </a>
