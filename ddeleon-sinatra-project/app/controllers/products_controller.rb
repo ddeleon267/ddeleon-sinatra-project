@@ -13,7 +13,7 @@ class ProductsController < ApplicationController
     if logged_in? && !params[:product][:name].empty?
 
       if Product.find_by(name: params[:product][:name])
-        redirect to '/products/new'
+        redirect to '/products/new'  #so we know that this works
         #flash message -- this product exitss
       else
         @product = Product.create(
@@ -84,16 +84,16 @@ class ProductsController < ApplicationController
 
   ############ DELETE #############
 
-  delete '/products/:id/delete' do
-    @product = Product.find(params[:id])
-    if logged_in?
-      @product.delete
-      # flash[:message] = "This product has been deleted"
-      redirect to '/products'
-    else
-      redirect to '/login'
-    end
-
-  end
+  # delete '/products/:id/delete' do
+  #   @product = Product.find(params[:id])
+  #   if logged_in?
+  #     @product.delete
+  #     # flash[:message] = "This product has been deleted"
+  #     redirect to '/products'
+  #   else
+  #     redirect to '/login'
+  #   end
+  #
+  # end
 
 end

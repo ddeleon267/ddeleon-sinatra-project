@@ -1,8 +1,16 @@
+<a href="/home">Home<a>
+<a href="/routines">My Routines<a>
+<a href="/routines/new">Create a New Routine<a>
+<a href="/logout">Logout<a>
+
+
 <h2> <%= @product.name %> </h2>
 <li> <%= @product.category %> </li>
 <li> <%= @product.ingredients %> </li>
 <li> <%= @product.notes %> </li>
 
-<form method="POST" action="/products/<%=@product.id%>/delete">
+<!-- <form method="POST" action="/products/<%=@product.id%>/delete">
       <input id="hidden" type="hidden" name="_method" value="delete">
-      <input id="delete_button" type="submit" name="Delete Product" value="Delete Product"></input>
+      <input id="delete_button" type="submit" name="Delete Product" value="Delete Product"></input> -->
+
+<!--links for home, logout, routines, create a new routine -->
