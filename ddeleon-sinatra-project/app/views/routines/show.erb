@@ -1,8 +1,10 @@
 <a href="/home">Home<a>
-<a href="/logout">Logout<a>
+<a href= "/routines"> Go Back to Your Routines </a>
+<a href="/logout"> Logout<a>
 
-<h2> <%= current_user.username %> </h2>
+
 <h1>Routine: <%=@routine.name%></h1>
+<h2>added by <%= current_user.username %> </h2> <!--would like this to be 'you' if current user -->
 
 <h3>Products Used</h3>
 <%@routine.products.each do |product| %>
@@ -15,14 +17,14 @@
 
 <% if current_user.id == @routine.user_id %>
   <a href= "/routines/<%=@routine.id %>/edit"> Edit This Routine </a>
-
   <form method="POST" action="/routines/<%=@routine.id%>/delete">
         <input id="hidden" type="hidden" name="_method" value="delete">
-        <input id="delete_button" type="submit" name="Delete Routine" value="Delete Routine"></input>
+        <input id="delete_button" type="submit" name="Delete Routine" value="Delete Routine">
+  </form>
 
 <% end %>
 
-<a href= "/routines"> Go back to your routines </a>
+
 <!--probably doing to want to modify table for routines at some point; will probably be better
 to have a brief description plus a longer recipe-style description. more convenent to use the former
 for a brief summary / subtitle for other users to see, then display longer description on a routine's show page -->
