@@ -1,26 +1,32 @@
 <h1>Welcome, <%=@user.username%>!</h1>
 
-<h3>Recently Added Routines From the Community</h3>
-<%if !@routines.empty?%>
-  <%@routines.reverse.take(10).each do |routine|%>
-    <ul><a href="/routines/<%=routine.id%>"><%=routine.name%></a>
-      <!--would be nice to say 'you' for routines created by current user -->
-      <li>Added by <%=routine.user.username%></li>
-      <li><%=routine.description%></li>
-    </ul>
+<div>
+  <h3>Recently Added Routines From the Community</h3>
+  <%if !@routines.empty?%>
+    <%@routines.reverse.take(10).each do |routine|%>
+      <ul><a href="/routines/<%=routine.id%>"><%=routine.name%></a>
+        <!--would be nice to say 'you' for routines created by current user -->
+        <li>Added by <%=routine.user.username%></li>
+        <li><%=routine.description%></li>
+      </ul>
+    <%end%>
   <%end%>
-<%end%>
+</div>
 
-<h3>Recently Added Products From the Community</h3>
-<%if !@products.empty?%>
-  <%@products.reverse.take(10).each do |product|%>
-    <li><a href="/products/<%=product.id%>"><%=product.name%></a></li>
+<div>
+  <h3>Recently Added Products From the Community</h3>
+  <%if !@products.empty?%>
+    <%@products.reverse.take(10).each do |product|%>
+      <li><a href="/products/<%=product.id%>"><%=product.name%></a></li>
+    <%end%>
   <%end%>
-<%end%>
+</div>
 
-<h3>Explore New Users!</h3>
-<%if !@users.empty?%>
-  <%@users.reverse.take(10).each do |user|%>
-    <li><a href="/users/<%=user.slug%>"><%=user.username%></a></li>
+<div>
+  <h3>Explore New Users!</h3>
+  <%if !@users.empty?%>
+    <%@users.reverse.take(10).each do |user|%>
+      <li><a href="/users/<%=user.slug%>"><%=user.username%></a></li>
+    <%end%>
   <%end%>
-<%end%>
+</div>

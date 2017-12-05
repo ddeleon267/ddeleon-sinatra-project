@@ -2,18 +2,20 @@
     <%= flash[:message] %><br></br>
   <% end %>
 
-<h1>Login</h1>
+<div>
+  <h1>Login</h1>
 
-<p><a href="/signup">New users - sign up here!</a></p><br>
+  <p><a href="/signup">New users - sign up here!</a></p><br>
 
-<form method="post" action="/login">
-  <label for="username">Username:</label>
-    <input type="text" id="username" name="username"/>
-    <br></br>
+  <form method="post" action="/login">
+    <label for="username">Username:</label>
+      <input type="text" id="username" name="username"/>
+      <br></br>
 
-  <label for="password">Password:</label>
-    <input type="password" id="password" name="password"/>
-    <br></br>
+    <label for="password">Password:</label>
+      <input type="password" id="password" name="password"/>
+      <br></br>
 
-  <input type="submit" id="submit" value="submit"/>
-</form>
+    <input type="submit" id="submit" value="submit"/>
+  </form>
+</div>

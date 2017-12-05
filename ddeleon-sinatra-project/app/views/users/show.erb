@@ -1,20 +1,24 @@
 <!-- eventually will want to add a way for user to edit some of this stuff -->
-<h1><%=@user.username %></h1>
-<h4>User Since _#will add this functionality later___</h4>
+<div>
+  <h1><%=@user.username %></h1>
+  <h4>User Since _#will add this functionality later___</h4>
 
-<p>Skin Type: #will add this functionality later</p>
-<p>Skin Concerns: #will add this functionality later</p>
+  <p>Skin Type: #will add this functionality later</p>
+  <p>Skin Concerns: #will add this functionality later</p>
+</div>
 
-<h3> <%= @user.username %>'s routines </h3>
+<div>
+  <h3> <%= @user.username %>'s routines </h3>
 
-<% if @user_routines.empty? %>
-  <p> <%= @user.username %> has not added any routines yet!<p>
-<%else%>
-  <%@user_routines.reverse.each do |routine|%>
-    <ul><a href='/routines/<%=routine.id%>'><%=routine.name%></a>
-        <%routine.products.each do |product|%>
-          <li><%=product.name%></li>
-        <%end%>
-    </ul>
+  <% if @user_routines.empty? %>
+    <p> <%= @user.username %> has not added any routines yet!<p>
+  <%else%>
+    <%@user_routines.reverse.each do |routine|%>
+      <ul><a href='/routines/<%=routine.id%>'><%=routine.name%></a>
+          <%routine.products.each do |product|%>
+            <li><%=product.name%></li>
+          <%end%>
+      </ul>
+    <%end%>
   <%end%>
-<%end%>
+</div>
