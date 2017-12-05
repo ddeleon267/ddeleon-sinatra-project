@@ -12,7 +12,9 @@ class RoutinesController < ApplicationController
   post '/routines' do
 
     if !params[:routine][:name].empty? && !params[:routine][:description].empty?
+      binding.pry
       @routine = Routine.new(params[:routine])
+      
       @routine.user_id = session[:id]
       @routine.save
 
@@ -62,6 +64,7 @@ class RoutinesController < ApplicationController
 
       if current_user.id == @routine.user_id
 	      @routine.update(name: params[:routine][:name])
+
         # @routine.update(products: params[:routine][:products])
         @routine.update(description: params[:routine][:description])
 
