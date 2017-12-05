@@ -1,4 +1,52 @@
 
 body {
-    color: blue;
+    color: #0C3247;
+    font-family: "Trebuchet MS", Helvetica, sans-serif
+
+    /*background-color: #e6ecf0;*/
+}
+
+div.wrapper {
+   /*background: linear-gradient(white, gray); /* Standard syntax */*/
+  /*-moz-box-shadow: 0 0 10px rgba(0,0,0,.3);*/
+  /*-webkit-box-shadow: 0 0 10px rgba(0,0,0,.3);*/
+  box-shadow: 0 0 10px rgba(0,0,0,.3);
+  border-style: solid;
+  border-color: #4F6A75;
+  border-width: 30px;
+  margin: 5px auto;
+  max-width: 1160px;
+  padding: 5%;
+  padding-bottom: 50px;
+  width: 85%;
+  overflow:hidden
+}
+
+
+
+a {
+    /*background: #4F6A75;*/
+    color: #0C3247;
+}
+
+div.nav {
+  float: right;
+  /*background: #4F6A75;*/
+  padding: 10px 0px;
+  margin-top: -40px;
+  margin-right: -40px;
+  /*background: #0C3247;*/
+}
+
+div.nav a {
+  /*background: #4F6A75;*/
+  padding: 10px 10px;
+  font-weight: bold;
+
+}
+
+a:hover {
+    /*background: hotpink;*/
+    color: white;
+    background: #4F6A75;
 }
