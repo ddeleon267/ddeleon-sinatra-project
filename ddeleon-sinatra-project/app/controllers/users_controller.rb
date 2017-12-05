@@ -48,7 +48,6 @@ post '/signup' do
         session[:id] = @user.id
         redirect to "/home"
       else
-        ##I don't know if this is actually being triggered at any point
         flash[:message] = "Password must be 6+ characters in length, and email must be in standard format."
         redirect to '/signup'
       end
