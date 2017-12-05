@@ -43,6 +43,7 @@ div.nav a {
   padding: 10px 10px;
   font-weight: bold;
 
+
 }
 
 a:hover {
@@ -50,3 +51,11 @@ a:hover {
     color: white;
     background: #4F6A75;
 }
+div.user_info {
+  /*background: #4F6A75;*/
+  padding: 5px 20px;
+}
+
+/*h1 {
+  background: #4F6A75;
+}*/
