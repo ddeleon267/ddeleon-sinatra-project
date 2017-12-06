@@ -37,7 +37,7 @@ end
 
 post '/signup' do
   if User.find_by(username: params[:username])
-    flash[:message] = "That username is taken. Please try again."
+    flash[:banana] = "That username is taken. Please try again."
     redirect to '/signup'
   elsif User.find_by(email: params[:email])
     flash[:message] = "That email is registered to another user. Please log in or try again."

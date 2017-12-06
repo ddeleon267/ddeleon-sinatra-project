@@ -12,9 +12,9 @@ class RoutinesController < ApplicationController
   post '/routines' do
 
     if !params[:routine][:name].empty? && !params[:routine][:description].empty?
-      binding.pry
+      # binding.pry
       @routine = Routine.new(params[:routine])
-      
+
       @routine.user_id = session[:id]
       @routine.save
 
@@ -47,6 +47,7 @@ class RoutinesController < ApplicationController
 
   ############ UPDATE ###########
   get '/routines/:id/edit' do
+  
     if logged_in?
       @routine = Routine.find(params[:id])
       erb :'/routines/edit'
@@ -64,7 +65,14 @@ class RoutinesController < ApplicationController
 
       if current_user.id == @routine.user_id
 	      @routine.update(name: params[:routine][:name])
+        @routine.products.clear
 
+        params[:routine][:product_ids].map do |product|
+          i = product.to_i
+          @routine.products << Product.find(i)
+        end
+
+        # @routine.routine_products.build(product_id: i)
         # @routine.update(products: params[:routine][:products])
         @routine.update(description: params[:routine][:description])
 

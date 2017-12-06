@@ -1,5 +1,6 @@
 require './config/environment'
-require 'rack-flash'
+require 'sinatra'
+require 'sinatra/flash'
 
 class ApplicationController < Sinatra::Base
 
@@ -8,7 +9,7 @@ class ApplicationController < Sinatra::Base
     set :session_secret, "password_security"
     set :views, Proc.new { File.join(root, "../views/") }
     enable :sessions
-    use Rack::Flash
+    register Sinatra::Flash
   end
 
   get '/' do
